@@ -15,10 +15,15 @@ class Gqrx < Formula
   depends_on 'gnuradio'
 
   def install
-    system "qmake -set PKG_CONFIG /usr/local/bin/pkg-config"
-    system "qmake -set prefix /usr/local"
-    system "qmake gqrx.pro"
-    system "make"
+    #system "qmake -set PKG_CONFIG /usr/local/bin/pkg-config"
+    #system "qmake -set prefix /usr/local"
+    #system "qmake gqrx.pro"
+    #system "make"
+    args = "PREFIX=#{prefix}"
+    mkdir "build" do
+      system "qmake", "..", *args
+      system "make"
+    end
     bin.install 'gqrx.app/Contents/MacOS/gqrx'
   end
 end
