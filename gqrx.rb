@@ -10,13 +10,10 @@ class Gqrx < Formula
 
   depends_on 'cmake' => :build
   depends_on 'qt'
-#brew install --with-c+11 --universal boost
   depends_on 'boost'
   depends_on 'gnuradio'
 
   def install
-    system "qmake -set PKG_CONFIG /usr/local/bin/pkg-config"      
-    system "qmake -query"
     system "qmake gqrx.pro"
     system "make"
     bin.install 'gqrx.app/Contents/MacOS/gqrx'
